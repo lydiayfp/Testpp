@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Analytics</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Investment Analytics</h1>
+            <div class="status" id="status">Loading...</div>
+        </header>
+        
+        <section class="controls">
+            <div class="control-group">
+                <label>Asset Type:</label>
+                <select id="assetType">
+                    <option value="global-etfs">Global ETFs</option>
+                    <option value="unit-trusts">Unit Trusts</option>
+                    <option value="sg-stocks">SG Stocks</option>
+                    <option value="us-stocks">US Stocks</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Symbol:</label>
+                <select id="symbol">
+                    <option value="SPY">SPY (US ETF)</option>
+                    <option value="VUSA.L">VUSA.L (LSE ETF)</option>
+                    <option value="O39.SI">O39.SI (SGX)</option>
+                    <option value="AAPL">AAPL (NASDAQ)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Time Horizon:</label>
+                <select id="timeHorizon">
+                    <option value="5y">5 Years</option>
+                    <option value="10y">10 Years</option>
+                    <option value="15y">15 Years</option>
+                    <option value="20y">20 Years</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Metric:</label>
+                <select id="metric">
+                    <option value="share-price">Share Price</option>
+                    <option value="ebitda">EBITDA</option>
+                    <option value="growth">Growth %</option>
+                    <option value="fcf">Free Cash Flow</option>
+                    <option value="peg">PEG Ratio</option>
+                </select>
+            </div>
+        </section>
+        
+        <div class="refresh-container">
+            <div class="pull-to-refresh" id="pullToRefresh">↓ Pull to refresh</div>
+        </div>
+        
+        <section class="chart-section">
+            <div id="chart"></div>
+        </section>
+        
+        <section class="key-metrics">
+            <h3>Key Metrics</h3>
+            <div id="metrics-display"></div>
+        </section>
+    </div>
+    
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
